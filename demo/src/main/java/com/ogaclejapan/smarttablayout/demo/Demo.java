@@ -2,12 +2,11 @@ package com.ogaclejapan.smarttablayout.demo;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.v4.view.PagerAdapter;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 public enum Demo {
@@ -51,7 +50,7 @@ public enum Demo {
 
       layout.setCustomTabView(new SmartTabLayout.TabProvider() {
         @Override
-        public View createTabView(ViewGroup container, int position, PagerAdapter adapter) {
+        public View createTabView(ViewGroup container, int position, @Nullable CharSequence pageTitle) {
           ImageView icon = (ImageView) inflater.inflate(R.layout.custom_tab_icon1, container,
               false);
           switch (position) {
@@ -96,7 +95,7 @@ public enum Demo {
 
       layout.setCustomTabView(new SmartTabLayout.TabProvider() {
         @Override
-        public View createTabView(ViewGroup container, int position, PagerAdapter adapter) {
+        public View createTabView(ViewGroup container, int position, @Nullable CharSequence pageTitle) {
           ImageView icon = (ImageView) inflater.inflate(R.layout.custom_tab_icon2, container,
               false);
           switch (position) {
@@ -167,6 +166,14 @@ public enum Demo {
     @Override
     public void startActivity(Context context) {
       DemoLikeMediumActivity.startActivity(context, this);
+    }
+  },
+
+  RECYCLER_VIEW_PAGER(R.string.demo_title_recycler_view_pager, R.layout.demo_smart_tab_layout2) {
+
+    @Override
+    public void startActivity(Context context) {
+        DemoRecyclerViewPagerActivity.startActivity(context, this);
     }
   };
 

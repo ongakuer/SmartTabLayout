@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
+import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,12 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
-
 import java.util.Random;
 
 public class DemoTabWithNotificationMarkActivity extends AppCompatActivity implements
@@ -86,7 +84,7 @@ public class DemoTabWithNotificationMarkActivity extends AppCompatActivity imple
   }
 
   @Override
-  public View createTabView(ViewGroup container, int position, PagerAdapter adapter) {
+  public View createTabView(ViewGroup container, int position, @Nullable CharSequence pageTitle) {
     LayoutInflater inflater = LayoutInflater.from(container.getContext());
     Resources res = container.getContext().getResources();
     View tab = inflater.inflate(R.layout.custom_tab_icon_and_notification_mark, container, false);

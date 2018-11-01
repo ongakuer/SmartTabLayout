@@ -1,0 +1,13 @@
+<me.relex.smarttablayout.SmartTabLayout2 xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/viewpagertab"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/tab_height"
+    android:background="@color/primary"
+    app:stl_defaultTabTextColor="@color/custom_tab"
+    app:stl_defaultTabTextHorizontalPadding="24dp"
+    app:stl_indicatorColor="@color/accent"
+    app:stl_indicatorInterpolation="linear"
+    app:stl_indicatorThickness="3dp"/>
+
+
