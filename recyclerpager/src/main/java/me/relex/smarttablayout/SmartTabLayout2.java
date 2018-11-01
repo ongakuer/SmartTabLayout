@@ -149,14 +149,14 @@ public class SmartTabLayout2 extends BaseSmartTabLayout {
                 }
             }
 
-            int[] distance;
-            distance = mSnapHelper.calculateDistanceToFinalSnap(layoutManager, snapView);
-            float positionOffset = 0;
-            if (distance != null) {
+            int[] snapViewDistance =
+                    mSnapHelper.calculateDistanceToFinalSnap(layoutManager, snapView);
+            float positionOffset = 0f;
+            if (snapViewDistance != null) {
                 if (layoutManager.canScrollHorizontally()) {
-                    positionOffset = (float) distance[0] / snapView.getWidth();
+                    positionOffset = (float) snapViewDistance[0] / snapView.getWidth();
                 } else {
-                    positionOffset = (float) distance[1] / snapView.getHeight();
+                    positionOffset = (float) snapViewDistance[1] / snapView.getHeight();
                 }
             }
 
@@ -167,7 +167,21 @@ public class SmartTabLayout2 extends BaseSmartTabLayout {
                 targetPositionOffset = Math.abs(positionOffset);
             } else {
                 targetPosition = position - 1;
-                targetPositionOffset = 1f - positionOffset;
+                View lastView = layoutManager.findViewByPosition(targetPosition);
+                int[] lastViewDistance = new int[2];
+                if (lastView != null) {
+                    lastViewDistance =
+                            mSnapHelper.calculateDistanceToFinalSnap(layoutManager, lastView);
+                }
+                float lastViewPositionOffset = 0f;
+                if (lastViewDistance != null) {
+                    if (layoutManager.canScrollHorizontally()) {
+                        lastViewPositionOffset = (float) lastViewDistance[0] / snapView.getWidth();
+                    } else {
+                        lastViewPositionOffset = (float) lastViewDistance[1] / snapView.getHeight();
+                    }
+                }
+                targetPositionOffset = Math.abs(lastViewPositionOffset);
             }
 
             tabStrip.onViewPagerPageChanged(targetPosition, targetPositionOffset);
@@ -211,7 +225,6 @@ public class SmartTabLayout2 extends BaseSmartTabLayout {
                     } else {
                         mInternalOnScrollListener.currentPosition = RecyclerView.NO_POSITION;
                     }
-                    // TODO
                     populateTabStrip();
                 }
 
