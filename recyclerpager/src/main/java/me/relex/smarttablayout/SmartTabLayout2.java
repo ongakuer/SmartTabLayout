@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 import com.ogaclejapan.smarttablayout.BaseSmartTabLayout;
-import me.relex.recyclerpager.PagerRecyclerAdapter;
+import me.relex.recyclerpager.PageRecyclerAdapter;
 
 /**
  * To be used with RecyclerView to provide a tab indicator component which give constant feedback as
@@ -75,14 +75,14 @@ public class SmartTabLayout2 extends BaseSmartTabLayout {
     @Override protected void populateTabStrip() {
         tabStrip.removeAllViews();
         RecyclerView.Adapter adapter = mRecyclerView.getAdapter();
-        if (!(adapter instanceof PagerRecyclerAdapter)) {
+        if (!(adapter instanceof PageRecyclerAdapter)) {
             return;
         }
 
         int count = adapter.getItemCount();
 
         for (int i = 0; i < count; i++) {
-            CharSequence title = ((PagerRecyclerAdapter) adapter).getPageTitle(i);
+            CharSequence title = ((PageRecyclerAdapter) adapter).getPageTitle(i);
 
             final View tabView = (tabProvider == null) ? createDefaultTabView(title)
                     : tabProvider.createTabView(tabStrip, i, title);
