@@ -88,7 +88,7 @@ public class DemoRecyclerViewPagerActivity extends AppCompatActivity {
         }
 
         void remove() {
-            if (tabs.length == 2) {
+            if (tabs.length == 0) {
                 return;
             }
             tabs = removeIntArray(tabs);

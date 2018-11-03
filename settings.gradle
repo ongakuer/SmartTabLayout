@@ -1,1 +1,1 @@
-include ':demo', ':library', ':utils-v4', ':utils-v13', ':recyclerpager'
+include ':demo', ':library', ':utils-v4', ':utils-v13', ':SmartTabLayout2'
